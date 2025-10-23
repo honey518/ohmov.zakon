@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test z fyziky – Ohmov zákon</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #eef2f3;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    color: #003366;
+  }
+  .question {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+  button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #004c99;
+  }
+  #result {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  .correct {
+    color: green;
+    font-weight: bold;
+  }
+  .incorrect {
+    color: red;
+    font-weight: bold;
+  }
+  .answers {
+    margin-top: 10px;
+    background: #f8f8f8;
+    border-radius: 5px;
+    padding: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Test z fyziky – Ohmov zákon</h1>
+
+<form id="quizForm">
+
+  <div class="question">
+    <p>1. Ako znie Ohmov zákon?</p>
+    <label><input type="radio" name="q1" value="a"> U = I × R</label><br>
+    <label><input type="radio" name="q1" value="b"> P = U × t</label><br>
+    <label><input type="radio" name="q1" value="c"> I = U × R</label>
+  </div>
+
+  <div class="question">
+    <p>2. Aký je vzťah medzi napätím, prúdom a odporom?</p>
+    <label><input type="radio" name="q2" value="a"> Napätie je priamo úmerné prúdu</label><br>
+    <label><input type="radio" name="q2" value="b"> Napätie je nepriamo úmerné prúdu</label><br>
+    <label><input type="radio" name="q2" value="c"> Nie je medzi nimi žiadny vzťah</label>
+  </div>
+
+  <div class="question">
+    <p>3. Aký prúd preteká obvodom, ak je napätie 12 V a odpor 6 Ω?</p>
+    <label><input type="radio" name="q3" value="a"> 0,5 A</label><br>
+    <label><input type="radio" name="q3" value="b"> 2 A</label><br>
+    <label><input type="radio" name="q3" value="c"> 72 A</label>
+  </div>
+
+  <div class="question">
+    <p>4. Jednotka odporu je:</p>
+    <label><input type="radio" name="q4" value="a"> Volt</label><br>
+    <label><input type="radio" name="q4" value="b"> Ampér</label><br>
+    <label><input type="radio" name="q4" value="c"> Ohm (Ω)</label>
+  </div>
+
+  <div class="question">
+    <p>5. Aký odpor má vodič, ak ním preteká prúd 3 A pri napätí 12 V?</p>
+    <label><input type="radio" name="q5" value="a"> 4 Ω</label><br>
+    <label><input type="radio" name="q5" value="b"> 36 Ω</label><br>
+    <label><input type="radio" name="q5" value="c"> 9 Ω</label>
+  </div>
+
+  <div class="question">
+    <p>6. Ktoré tvrdenie je pravdivé?</p>
+    <label><input type="radio" name="q6" value="a"> Pri zvýšení odporu sa prúd zmenší</label><br>
+    <label><input type="radio" name="q6" value="b"> Pri zvýšení odporu sa prúd zväčší</label><br>
+    <label><input type="radio" name="q6" value="c"> Prúd nezávisí od odporu</label>
+  </div>
+
+  <div class="question">
+    <p>7. V elektrickom obvode je U = 9 V a I = 0,3 A. Vypočítaj odpor.</p>
+    <label><input type="radio" name="q7" value="a"> 3 Ω</label><br>
+    <label><input type="radio" name="q7" value="b"> 30 Ω</label><br>
+    <label><input type="radio" name="q7" value="c"> 0,033 Ω</label>
+  </div>
+
+  <div class="question">
+    <p>8. Ktorá z nasledujúcich veličín nie je súčasťou Ohmovho zákona?</p>
+    <label><input type="radio" name="q8" value="a"> Napätie</label><br>
+    <label><input type="radio" name="q8" value="b"> Odpor</label><br>
+    <label><input type="radio" name="q8" value="c"> Čas</label>
+  </div>
+
+  <div class="question">
+    <p>9. Ak sa dvojnásobne zvýši napätie pri nezmenenom odpore, prúd sa:</p>
+    <label><input type="radio" name="q9" value="a"> Zníži na polovicu</label><br>
+    <label><input type="radio" name="q9" value="b"> Zväčší dvojnásobne</label><br>
+    <label><input type="radio" name="q9" value="c"> Nezmení sa</label>
+  </div>
+
+  <div class="question">
+    <p>10. Ktorý z nasledujúcich vzorcov vyjadruje odpor?</p>
+    <label><input type="radio" name="q10" value="a"> R = U / I</label><br>
+    <label><input type="radio" name="q10" value="b"> R = I / U</label><br>
+    <label><input type="radio" name="q10" value="c"> R = P × t</label>
+  </div>
+
+  <button type="button" onclick="vyhodnotTest()">Vyhodnotiť test</button>
+
+</form>
+
+<div id="result"></div>
+
+<script>
+function vyhodnotTest() {
+  const spravne = {
+    q1: {odp: "a", text: "U = I × R"},
+    q2: {odp: "a", text: "Napätie je priamo úmerné prúdu"},
+    q3: {odp: "b", text: "2 A"},
+    q4: {odp: "c", text: "Ohm (Ω)"},
+    q5: {odp: "a", text: "4 Ω"},
+    q6: {odp: "a", text: "Pri zvýšení odporu sa prúd zmenší"},
+    q7: {odp: "b", text: "30 Ω"},
+    q8: {odp: "c", text: "Čas"},
+    q9: {odp: "b", text: "Zväčší dvojnásobne"},
+    q10: {odp: "a", text: "R = U / I"}
+  };
+
+  let body = 0;
+  let vysledkyHTML = "<div class='answers'><h3>Správne odpovede:</h3>";
+
+  const form = document.forms["quizForm"];
+
+  for (let otazka in spravne) {
+    const odpoved = form[otazka].value;
+    if (odpoved === spravne[otazka].odp) {
+      body++;
+      vysledkyHTML += `<p><span class='correct'>Otázka ${otazka.slice(1)}: Správne ✔ (${spravne[otazka].text})</span></p>`;
+    } else if (odpoved) {
+      vysledkyHTML += `<p><span class='incorrect'>Otázka ${otazka.slice(1)}: Nesprávne ✖ (Správna odpoveď: ${spravne[otazka].text})</span></p>`;
+    } else {
+      vysledkyHTML += `<p><span class='incorrect'>Otázka ${otazka.slice(1)}: Nezodpovedaná ✖ (Správna odpoveď: ${spravne[otazka].text})</span></p>`;
+    }
+  }
+
+  vysledkyHTML += "</div>";
+
+  const percenta = (body / Object.keys(spravne).length) * 100;
+
+  document.getElementById("result").innerHTML =
+    `Získal si <strong>${body}</strong> z 10 bodov.<br>` +
+    `Úspešnosť: <strong>${percenta.toFixed(1)} %</strong><br><br>` +
+    vysledkyHTML;
+}
+</script>
+
+</body>
+</html>
